@@ -1,0 +1,14 @@
+mysql> CREATE USER 'blog'@'localhost' IDENTIFIED BY '123456';    ##创建子用户blog  在本地创建localhost 密码123456
+mysql> flush privileges;      ##刷新用户权限(具体干什么有什么用 不清楚)
+exit重新退出root 登陆新用户 看看能不能登陆进去
+继续退出,再登陆root用户 
+创建将要授权给子用户的数据库mysql> create database blog;
+mysql> grant all privileges on blog.* to blog@localhost identified by 'blog'; 为子用户授予blog库的所有权限
+mysql> flush privileges; 刷新用户权限;
+exit退出后登陆子用户,出现了无法登陆的问题,目前还是不清楚为啥,查询之后网上给出了更改密码的建议,所以又登陆了root用户修改密码
+mysql> set password for blog@localhost = password('');  更改密码语句,应该是必须用最高权限用户root才能改密码
+退出之后再登陆能了,要不就开始创建子用户的时候就不要创建密码,在所有操作做完之后又设置了密码就能行了,具体原因未知
+登陆之后,查询数据库发现有两个数据库 
+information_schema  这张表里保存了所有数据库的信息
+blog   这个表就是通过root创建好并授权的库
+之后就是use blog 使用库进行创建表增删改查

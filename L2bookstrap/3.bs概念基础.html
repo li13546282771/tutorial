@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+ <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">hello</div>
+            <div class="col-md-4">world</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">1</div>
+            <div class="col-md-4">2</div>
+            <div class="col-md-4">3</div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th>firstname</th>
+                        <th>username</th>
+                    </tr>
+                    <tr>
+                        <td>小明</td>
+                        <td>小明</td>
+                    </tr>
+
+                </table>
+                <button class="btn">按钮</button>
+                <span class="glyphicon glyphicon-search"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="jquery.js"></script>
+    <script src="bootstrap.js"></script>
+</body>
+</html>
+<!--未用框架之前,网页对齐比较麻烦,设定宽高嵌套.外边距 left 自适应
+1.栅格布局
+网页的总div下 calss名叫container的大容器div,定宽居中
+把网页总宽度平均分为12份
+先定义一行  div class="row" 行高由列内容决定
+4>在一行下再写子div class="col-md-8" column列 8表示几份宽度  md(平板)表示当设备小于一定像素时 这个div独占12份,xs手机,自适应布局.平时主要关注col和数字占几列
+5>分好整个网页的div布局,在分好的小div下放文字,表格等
+
+2.使用
+html中的class名用bootstarp已经定义好的class
+class名可以有多个,效果是多个的组合
+
+3.看文档
+4.补充:
+1>导航栏稍微复杂
+2>字体图标  位图像素构成的图片,例如,手机拍摄的图片 ,特点色彩图片丰富复杂,缺点当图片放到很大的时候会看到像素点.
+矢量图:圆 方形曲线都是通过数学计算的.缺点形状没那么复杂
+优点  放大缩小不失真  系统字体:是用矢量图画出来的  图标可以用ps.jpg img标签引用.把图标用矢量图画出后封装成系统字体,在i标签  优点  省空间和快速
+先设置字体集  font-family:'宋体'     然后用<i>引用
+常用图标网站https://fontawesome.com/?from=io
+		https://www.iconfont.cn/
+
+
+手写vs框架:  手写可控性强.框架出活快,缺点不好修改.要求会手写,框架也要会用

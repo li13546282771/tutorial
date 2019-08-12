@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //语法严格模式  不写分号会报错
+    // 'use strict';
+
+    //class  extends  this super
+    class polygon{
+        constructor(height,width){
+            this.height = height;
+            this.width= width;
+        }
+    }
+    class square extends polygon{
+        constructor(sideLength){
+            super(sideLength,sideLength)
+        }
+        get area(){
+            return this.height+this.width
+        }
+        set sideLenth(newLenth){
+            this.height = newLenth;
+            this.width = newLenth;
+        }
+    }
+    var square= new square(2)
+</script>
+</body>
+</html>

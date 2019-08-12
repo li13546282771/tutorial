@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app3">
+    <p v-if="a">现在看到我了</p>
+    <p style="color: red">{{b}}</p>
+    <p v-for="to in text1">   <!--for循环输出文本 -->
+        {{to.text}}
+
+    </p>
+    <p>{{d}}</p>
+    <button v-on:click="rever">翻转</button>
+</div>
+<div id="app-6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+</div>
+<div id="app5">
+    <input type="text" v-model.number="a">+
+    <input type="text" v-model.number="b">=
+    <span>{{score}}</span>
+<!--    <span>{{a+b}}</span>-->
+
+</div>
+
+<div id="a">
+    <button @click="clickBtn">加1</button>
+    <span>{{number}}</span>
+</div>
+</body>
+<script>
+    var app3 =new Vue({
+        el:'#app3',
+        data:{
+            a:true,  //在控制台输入app3.a=false内容隐藏
+            b:'red',
+            text1:[{ text: '学习 JavaScript' },
+                { text: '学习 Vue' },
+                { text: '整个牛项目' }],
+            d: 'Hello Vue.js!'
+        },
+        methods:{
+            rever :function(){
+                this.d = this.d.split('').reverse().join('')
+            }
+        }
+    });
+
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            message: 'Hello Vue!'
+        }
+    });
+
+    var app5 = new Vue({
+        el:'#app5',
+        name:app5,
+        data:{
+
+            a:1,
+            b:1
+
+        },
+        computed:{
+            score:function () {
+                return this.a+this.b
+            }
+
+    }});
+
+    var a =new Vue({
+        el:'#a',
+        data:{number:0},
+
+            methods:{
+                clickBtn:function () {
+
+                    this.number+=1
+
+                }
+            }
+    });
+
+
+</script>
+</html>

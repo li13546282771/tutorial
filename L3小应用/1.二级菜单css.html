@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--css实现二级菜单,适合简单的情况-->
+    <style>
+
+        a{
+            text-decoration: none;
+        }
+
+        ul{
+            list-style: none;
+
+
+        }
+        .second{
+            display: none;
+        }
+        /*伪类选择器：a：hover   a：visited*/
+        /*:target 锚链接指向的那个元素*/
+        .second:target{
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+    <ul class="first">
+        <li><a href="#shuma-sub">数码产品</a>
+        <ul class="second" id="shuma-sub">
+            <li><a href="#">手机</a></li>
+            <li><a href="#">电脑</a></li>
+            <li><a href="#">手表</a></li>
+
+        </ul></li>
+    <li>
+        <a href="#shi">食品</a>
+        <ul class="second" id="shi">
+            <li><a href="#">手机</a></li>
+            <li><a href="#">电脑</a></li>
+            <li><a href="#">手表</a></li>
+
+        </ul>
+    </li>
+    <li><a href="#fu">服装</a>
+    <ul class="second" id="fu">
+            <li><a href="#">手机</a></li>
+            <li><a href="#">电脑</a></li>
+            <li><a href="#">手表</a></li>
+
+        </ul></li>
+    </ul>
+</body>
+</html>
+
+<!--1.一级菜单菜单由ul标签实现.去除默认列表风格 添加背景 float:left横向菜单-->
+<!--2.二级菜单：一级的ul的li有嵌套另一个ul
+3.网页刚加载的时候，隐藏二级菜单  display：none。（源代码不会加载） visibility：hidden（源代码会加载）-->
+<!--4.一级菜单li中的a链接通过href=‘#id’指向二级菜单的ul标签-->
+<!--点击一级菜单后二级菜单成为目标terget ，触发相关的css变化-->

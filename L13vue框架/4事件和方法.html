@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="clickBtn">
+<!--    <button @click="clickBtn">缩写方式 v-on命令常用缩写成@-->
+        点我
+    </button>
+    <span>{{number}}</span>
+
+    <input type="text" v-model.number="a">+
+    <input type="text" v-model.number="b">=
+    <span>{{score}}</span>
+
+    <input type="text"  v-model="msg">
+    <span>{{res_msg}}</span>
+<!--    <span>{{ msg.reverse() }}</span>  字符串反向显示,过滤器写多比较乱-->
+<!--    <span>{{ msg.reverse() }}</span>-->
+</div>
+<script>
+    console.log(this);//顶级对象window(含有浏览器宽高,事件,浏览历史,引入的外部库,类似py object
+    var app =new Vue({
+        el:'#app',
+        name:'app',
+        data:{
+            msg:'hello',//data里的变量只是页面初次加载时的初始值   随着方法修改,变量已发生变化
+            number:0,
+            a:0,
+            b:0,
+
+        },
+        methods:{
+            clickBtn:function () {
+                // console.log('a')
+                // number = number+1  number只是生成app实例传入的参数并var number=0,报引用错误
+                // app.number = app.number+1; //不能再对象app内部调用app
+                  //类似python类中的self,  this表示执行它的对象
+                // console.log(this) ;//调用者app它所在的对象
+                this.number+=1
+
+            }
+        },
+        computed:{
+            //计算属性  VS  方法
+            //不需要绑定事件  需要
+            //简单处理 ;      可以处理难得逻辑
+            //网页中多次引用一个值,会缓存;方法已绑定
+            // 类似重写python类get_attr函数
+            //方法更重要
+            score:function () {
+                return this.a+this.b
+            },
+            res_msg:function () {
+                return this.msg.split()
+            }
+        }
+    });
+    // dom思想
+    // document.getElementsByTagName('button').onclick()
+    // vue基于绑定,会html生成虚拟的dom,监听dom节点变化,更新值watcher监听者notify统治者,修改队列
+    //上例有一套值绑定和一套时间方法绑定,点击按钮(v),触发方法方法改变实例中的值(M),(M)值自动更新到了html中(v)
+</script>
+</body>
+</html>

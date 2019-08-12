@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo  父子组件传值   父传子</title>
+    <!-- 把一个复杂网页分成多个组件开发,逻辑解耦提高复用.这个todo例子很简单,但为了表现父子组件知识,有些刻意的把代码分成两个组件,ul标签为父组件,li作为子组件  -->
+    <script src="../vue.js"></script>
+    <style>
+        ul{list-style: none}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input type="text" v-model="inputValue" value="" v-on:keyup.13="handleSubmit">
+        <button v-on:click="handleSubmit" >提交</button>
+    </div>
+    <ul>
+        <todo_item
+                v-for="(item,index) in todos"
+                v-bind:content="item"
+                v-bind:index="index"
+                v-bind:key="index"
+        >
+        </todo_item>
+    </ul>
+</div>
+</body>
+<script>
+    //  父组件data传到子组件中
+    // 1.子组件标签定义一个[自定义]属性,相当于一个变量,这个变量绑定父组件数据
+    // 2.子组件中显示的用props(properties属性,类似data)声明接收
+    // 3.子组件html中使用传递过来的变量
+    // 其他内容  v-for 渲染子组件,程序并不知道子组件之间有什么区别,在删除和更新可能出现问题,需要为子组件指定id.  绑定属性key属性,值建议为那一行数据id列,没id的话为索引
+    Vue.component('todo_item',{
+        name:'todo-item',
+        template:'<li>{{index+1}}.{{content }}</li>',
+        props:['content','index']
+    });
+    var app =new Vue({
+        el:'#app',
+        name:'todo',
+        data:{
+            inputValue:'',
+            todos:['购买书籍','给朋友','返回']
+        },
+        methods:{
+            handleSubmit:function () {
+                // console.log(this.inputValue);
+                // console.log(this.todos,typeof this.todos)
+                this.todos.push(this.inputValue);
+                this.inputValue=''
+            }
+        }
+    })
+</script>
+</html>

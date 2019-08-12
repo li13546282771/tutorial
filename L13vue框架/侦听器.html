@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="watch-example">
+    <p>
+        提问:
+        <input v-model="question">
+    </p>
+    <p>{{ answer }}</p>
+</div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var VM = new Vue({
+        el:'#watch-example',
+        data:{
+            question:'',
+            answer:'问问题'
+        },
+        watch:{
+            question:function (newQuestion, oldQuestion) {
+                this.answer ='正在输入问题';
+                this.debouncedGetAnswer();
+                console.log(this)
+            },
+
+        }
+    })
+</script>
+</html>

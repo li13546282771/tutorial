@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#banner,#banner li{
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				
+			}
+			#banner{float:left;}
+			/* 将标签左浮动 */
+			#banner li img{display: block;
+			width: 1503.2px;
+			}
+			#buttons span{
+				cursor: pointer;/*设置点击时鼠标的样式*/
+				float: left;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%; /*设置成圆*/
+				background: #333;
+				margin-right: 5px;
+}
+	
+			a{text-decoration: none;}
+			/*对应点亮的小圆点：成橘色*/
+			#buttons .on{
+				background: orangered; 
+			}
+			/*左右按钮*/
+			.arrow{
+		cursor: pointer;
+		display: none;  /*设置暂时不显示*/
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		font-size: 36px;
+		font-weight: bold;
+		width: 40px;
+		height: 40px;
+		position: absolute;  /*设置定位*/
+		z-index: 200;
+		top: 180px;
+		background: RGBA(0,0,0,.3);  /*背景透明度*/
+		color: #fff;
+	}
+
+	#prev{
+		left: 20px;
+	}
+
+	#next{
+		right: 20px;
+	}
+			
+			/* 设置小圆点的位置 */
+			#container{position: relative;}
+			/*小圆点*/
+			#buttons{
+				position: absolute; /*小圆点绝对定位*/
+				height: 10px;
+				width: 100px;
+				bottom: 20px;  /*距离底部20px*/
+				left: 50%;  /*左右居中显示*/
+				z-index: 100;  
+			}
+			/*左右按钮*/
+			.arrow{
+				position: absolute;  
+				z-index: 200;
+				top: 180px;
+			}
+
+			#prev{
+				left: 20px;
+			}
+
+			#next{
+				right: 20px;
+			}
+			 
+			 
+			 
+			#container:hover .arrow {   /*鼠标移入: class=arrow的元素显示*/
+				display: block;
+ }/*鼠标移入是显示*/
+ 
+ 
+ 
+ 
+ 
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<ul id="banner">
+				<li><a href='#'><img src="5.30图片/4.jpg"></li>
+				<li><a href='#'><img src="5.30图片/1.jpg"></li>
+				<li><a href='#'><img src="5.30图片/2.jpg"></li>
+				<li><a href='#'><img src="5.30图片/3.jpg"></li>
+				<li><a href='#'><img src="5.30图片/4.jpg"></li>
+				<li><a href='#'><img src="5.30图片/1.jpg"></li>
+			</ul>
+			<!-- 伴随移动的小圆点 -->
+			<div id="buttons">
+				<span index='1' class="on"></span>
+				<span index='2'></span>
+				<span index='3'></span>
+				<span index='4'></span>
+			</div>
+			<!-- 向左向右的图片 -->
+			<a href="javascript:;" id="prev" class="arrow">&lt;</a>  <!--向左-->
+			<a href="javascript:;" id="next" class="arrow">&gt;</a>  <!--向右-->
+
+		</div>
+		<script type="text/javascript">
+			window.onload = function () {
+
+			//获取元素
+			var container =  document.getElementById("container");
+			var banner = document.getElementById("banner");
+			var li = document.querySelectorAll("#banner li");
+			var spanNode = document.querySelectorAll("#buttons span");
+			var img = document.getElementsByTagName("img")[0];
+
+			//前后按钮
+			var prev = document.getElementById('prev');
+			var next = document.getElementById('next');
+
+			//索引
+			var index = 1;
+
+			//给 container 设置宽，高，以及overflow:hidder
+			container.style.width = img.offsetWidth + "px";
+			container.style.height = img.offsetHeight + "px";
+			container .style.overflow = "hidden";
+
+			//给banner 设置宽高
+			banner.style.height = img.offsetHeight + "px";
+			banner.style.width = img.offsetWidth * li.length + "px";
+			banner.style.left = "-1503px"; /*默认位移设置*/
+	}
+			 function animate(offset) {
+            banner.style.transition = "0.5s";
+            banner.style.left = -parseInt(offset )* index + "px";
+        }
+
+        next.onclick = function () {
+            //点击下一页：移动
+            index ++;
+            console.log("索引index:"+index);
+            animate(img.offsetWidth)
+            
+        }
+
+        prev.onclick = function () {
+            index--;
+            animate(img.offsetWidth)
+            showButton()
+
+        }
+		</script>
+	</body>
+</html>
+
+
+
+<!-- 学到的知识点:
+	1.cursor: pointer;改变鼠标放上去的样式
+	2.把a标签的href属性设置成JavaScript:;的好处
+		让点击效果执行JavaScript空语句，且返回的也是空或者false值，防止A标签跳转。
+		从而可以给链接的 onclick 方法上写自己想执行的代码
+	3.根据offserWidth和offsetHeight获取图片的宽高
+	4.:hover通过鼠标悬停在元素上方改变样式   光标放在图片上显示上一页下一页在箭头按钮

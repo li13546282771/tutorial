@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    v-if  写在标签属性的位置 -->
+<!--    <h1 v-if="flag">第一个if分支</h1>-->
+<!--    多个分支用v-else-if 命令 的值可以是变量或简单表达式，表达式有字符串引号与外层错开-->
+<!--    <h1 v-else-if="type === 'A'">成绩A</h1>-->
+<!--    else分支无条件不用写-->
+<!--    <h1 v-else>else分支</h1>-->
+    <table>
+        <tr>
+            <th>编号</th>
+            <th>书名</th>
+            <th>价格</th>
+        </tr>
+        <!--    <tr>-->
+        <!--        <td>1</td>-->
+        <!--        <td>西游记</td>-->
+        <!--        <td>31</td>-->
+        <!--    </tr>-->
+<!--        v-for类似python中的for循环,注意两个参数时索引在第二个参数-->
+
+        有时发现v-for作用到不想循环的所有标签,可以在想要循环的标签外套一层div然后v-for写到那层div
+        <tr v-for="(book,index) in books">
+            <td>{{index+1}}</td>
+            <td>{{book.name}}</td><!--循环后item又是对象,点访问属性 -->
+            <td>{{book.price}}</td>
+        </tr>
+    </table>
+</div>
+
+<script>
+    var app=new Vue({
+        el:"#app",
+        name:'app',
+        data:{
+            // flag:false,
+        // type:A,
+        books:[
+            {id:1, name:'西', price:31},
+            {id:2, name:'游', price:31},
+            {id:3, name:'记', price:31}
+        ]
+        }
+    });
+
+
+</script>
+</body>
+</html>

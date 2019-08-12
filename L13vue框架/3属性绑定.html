@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性绑定</title>
+    <!--引入vue.js-->
+    <script src="vue.js"></script>
+</head>
+<body>
+<!--<h5 style="text-align: left">标题</h5>-->
+<!--"h5"是标题     "标题"内容   style  是属性整个是元素 -->
+<div id="app">
+    {{msg}}
+<!--    <img src="{{imgSrc}} " height="300px" width="300px"/>vue为了避免歧义,{{msg}}是渲染单项数据流,属性src=''是双向数据流,语法不能写成{{img}}要用绑定写法   -->
+<!--    vue实例中的data变量渲染到html对应的值中-->
+<!--    v-bind 是vue.js提供的命令,不同的命令产生不同的功能,v-bind绑定属性,值不是字符串,是vue实例中的变量名,如果写错会报属性不存在错误-->
+<!--    场景:插值渲染,不同条件显示不同imgUrl:不同条件下标签class属性动态切换-->
+<!--    v-bind命令常用,为了简介页面可以缩写 -->
+    <img v-bind:src="imgSrc" height="300px" width="300px">
+    <img :src="imgSrc" height="300px" width="300px"><!--缩写 -->
+</div>
+<script>
+    var app =new Vue({
+        el:'#app',
+        name:'app',
+        data:{
+            msg:'图片',
+            imgSrc:'../L12同步异步/红包.png'//前端标识符小驼峰风格
+        }
+    })
+</script>
+</body>
+</html>

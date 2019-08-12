@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+</head>
+<body>
+
+CORS  跨域资源共享
+origin(单词意思原始的,源头的),http请求头里有一个字段,表示请求从哪里发出,客户端的请求地址.作用标识客户端ip,服务器根据这个地址处理业务(登陆非常用地提醒,根据客户端ip反爬),除了上述作用,还有一个重要目的为了安全
+伪造跨域攻击:客户端从服务器加载了一个网页,这个网页(taobao.com)本身看起来正常,但这个网页里有一个恶意按钮,点击后触发一段ajax或axios,代码会请求另外一个网站(hack.com),下载恶意程序代码或广告,结果客户端受损失,但服务端(taobao,com)也不一定有问题,被黑客挂恶意js脚本或没及时发现
+解决:浏览器判断请求和响应头里的origin字段,如果请求时请求的服务端ip和接收响应的ip一致,认为没有伪造攻击,允许,不一致则浏览器会丢弃掉数据,表现cors验证失败
+一致判断:浏览器接收静态html没问题,如果html中js的后续异步请求,在判断请求中的origin里的 协议(本地,http,https),域名(ip),端口号,
+任何一个不一致则为不一致
+什么时候会因为跨域验证而导致请求失败:Django中不会出现的,因为django前端页面是后端渲染的,访问地址跟处理逻辑的接口域名端口完全一致,  前后端分离开发后容易出现,因为vue程序被web容器代理后是一个域名端口访问,而后端接口又是另外程序 域名或端口,最终判断不一致
+
+前后端开发有优点,cros是浏览器的安全机制,但前后端两个程序域名端口肯定不一样.这个安全机制反而影响开发
+如何关掉cors机制
+1.修改前端,做一个正向代理  127.0.0.1:63343/com1 转发到  127.0.0.1:5000/com1
+    代理功能可有webpack或nginx   转发后浏览器认为同源不会触发cors验证
+2.修改后端,修改响应头添加信息告知浏览器这个响应时跨域的请信任;
+Access-Control-Allow-Origin Header、Access-Control-Allow-Methods和Access-Control-Allow-Headers Header
+
+django httpResponse(header={})类,但缺点写着麻烦和容易写错.推荐使用插件https://blog.csdn.net/zizle_lin/article/details/81381322
+
+3.jsonp格式   html加载后如果再访问服务器就会验证跨域,但是发现一些特例,<script></script><img>   有人想服务器不返回json字符串,而是返回 (伪代码)<spcipt>JSON.parse('{"jsonstr":""}')</spcipt>,这就是jsonp格式
+
+三种方式都有不少人使用
+
+<script>
+    //前端用ajax或ax向后端取发请求
+    // axios.defaults.withCredentials = true;
+    axios.get('http://127.0.0.1:5000/').then(
+        function (resp) {
+            console.log(resp)
+        }
+    )
+</script>
+</body>
+</html>

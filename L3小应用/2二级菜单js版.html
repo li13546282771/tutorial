@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    ul, li{
+      list-style: none;
+    }
+
+
+  </style>
+</head>
+<body>
+
+<ul class="first">
+  <li>
+    首页
+    <ul class="second" id="shouye-sub">
+      <li>蔬菜</li>
+      <li>生鲜</li>
+    </ul>
+
+  </li>
+  <li>
+    生鲜
+      <ul class="second" id="shengxian-sub">
+        <li>鱼</li>
+        <li>虾</li>
+      </ul>
+  </li>
+
+</ul>
+
+<script>
+  // 原生js，写到body尾部相当于jquery里的ready()
+
+  var second_uls = document.getElementsByClassName('second')
+  for(var i=0; i<second_uls.length; i++){
+    // 初始折叠
+    second_uls[i].style.display = "none";
+
+    // 添加事件
+
+    second_uls[i].parentNode.onclick = function(event){/*parentNode.onclick选择父节点的点击事件*/
+      // console.log(event.target)
+      ul = event.target.firstElementChild
+      // console.log(ul)
+      // console.log(ul.style)
+      if (ul.style.display == "none"){
+        ul.style.display="block";
+      }else if(ul.style.display == "block"){
+        ul.style.display="none";
+      }
+    }
+  }
+
+  // // 一级标签下的li  先写死针对一个标签操作
+  // console.log(second_uls[0].parentNode)
+  // second_uls[0].parentNode.onclick = function(){
+  //   if (second_uls[0].style.display == "none"){
+  //     second_uls[0].style.display="block";
+  //   }else if(second_uls[0].style.display == "block"){
+  //     second_uls[0].style.display="none";
+  //   }
+  // }
+  // console.log(second_uls[0])
+</script>
+</body>
+</html>
+
+<!--js触发事件
+1. 标签行内js代码 <button script="javascript: fx();">   <script>function fx(){}</script>    优点明显看到哪个标签绑定事件，缺点前后端耦合
+2. （推荐）js脚本里绑定事件  obj.onclick = function (){ 业务逻辑 }  ，第3种的简写
+3. （推荐）js脚本里绑定事件  obj.addEventListener('click', function () {   })
+
+
+<li>数码
+  <ul id="digit" class="second">
+    <li><a href="#">手机</a></li>
+    <li><a href="#">电脑</a></li>
+    <li><a href="#">智能手表</a></li>
+  </ul>
+</li>
+
+li.firstchildNode    数码
+li.firstchildElement    ul
+
+事件绑定方法中无法获取到之前的元素对象，原因 for循环每次局部变量。绑定函数的参数event.target获取交互元素。
+
+
+回调callback：过一会再调用。
+例1：
+“你想去楼下小卖部买一包方便面。
+老板说这个口味卖完了 你先回家，等货来了我再通知你。【定义回调函数】
+（货来、通知）人去小卖部领取方便面。【执行回调函数中的内容】”
+例2：
+requests包，for： response = requests.get(url)   response.content  try 一个接一个。
+ 由于图片比较大，整个程序速度慢。
+js中axio包，http并发请求 。 for （）{ get(url)}.then{response.content}.catch{失败} 写成一条， 请求图片需要花费一定时间，then和catch不会立即执行，直到接收完响应才执行。
+
+js的很多方法和事件会将实参传递给回调函数。
+-->

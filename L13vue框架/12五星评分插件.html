@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <!--实现思路
+    1.数据写死,先全部显示五颗星
+    2.每颗星绑定事件.用户点击时把点击星星的下标传入方法,方法判断1>点击星的索引比之前现实的行少,循环遍历所有星,小于等于传入索引星全星,后面的为空星    判断三点击星索引大于之前星数,遍历所有,小于等于传入索引星全星,后面的为空星   判断3>点击星索引等于当前显示星数,点击的星在半星和全星间切换
+    -->
+</head>
+<body>
+    <div id="app">
+        <p>评分:{{starrating}}分</p>
+        <div class="star-box">
+            <img v-for="(star,index) in stars"
+                 :title="index+1"
+                 v-on:click="rating(index)"
+                 v-bind:src="star.src" alt="星星图标">
+
+        </div>
+
+    </div>
+</body>
+<script>
+    var staroff='img/星星.png';
+    var staron='img/星星_选中.png';
+    var starHalf='img/半星.png';
+    var vm = new Vue({
+        el:'#app',
+        name:'star-rating',
+        data:{
+            starrating:0,
+            // staronNum:0,
+            stars:[
+                {
+                    src:staroff,
+                    flag:0,  //0表示空星  1表示全星  2表示半星
+                },
+                {
+                    src:staroff,
+                    flag:0,
+                },
+                {
+                    src:staroff,
+                    flag:0,
+                },
+                {
+                    src:staroff,
+                    flag:0,
+                },
+                {
+                    src:staroff,
+                    flag:0,
+                },
+            ]
+        },
+        methods:{
+            rating:function (index) {
+                //如果用户点击星的索引大于当前全星数
+                if (index+1>this.starrating){
+                    for (var i=0;i<=index;i++){
+                        this.stars[i].src=staron;
+                        this.stars[i].flag=1
+                    }
+                }
+                //如果用户点击星的索引小于当前全星数
+                if(index+1<this.starrating){
+                    for (var i=(index+1);i<5;i++){
+                        this.stars[i].src =staroff;
+                        this.stars[i].flag =0
+                    }
+                }
+                //如果用户点击当前星的话当前星变成半星
+                if (index+1 === this.starrating){
+                    for (var i=0;i<index;i++){
+                        this.stars[index].src = starHalf;
+                        this.stars[index].flag = 2;
+                        this.stars[i].src = staron;
+                        this.stars[i].flag = 1;
+                    }
+
+                }
+                //总分数
+                var count =0;
+                for (var i=0;i<this.stars.length;i++){
+                    if (this.stars[i].flag ===1){
+                        count+=1;
+                    }
+                    if(this.stars[i].flag ===2){
+                        count+=0.5
+                    }
+
+                }
+                this.starrating =count
+            }
+        }
+    })
+</script>
+</html>

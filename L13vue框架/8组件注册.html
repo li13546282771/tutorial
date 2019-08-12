@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件注册</title>
+<!--    组件:component,把网页中重复固定的功能抽象出来,例如ul列表li中的内容,一个大网页按照头部,广告,功能进行划分,自己包含一定功能的模块就是组件,复用组件提升效率,-->
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    调用组件
+        组件中name小驼峰comFirst  引用组件是强制要求,中划线分割小写风格  com-first   -->
+    <com1></com1>
+    <com2></com2>
+
+</div>
+</body>
+<script>
+    //1.全局注册
+    //Vue.component(子组件名,组件实例化所需参数).com1组件注册到了根组件myapp下,子组件注册要写在根组件实例化前
+    //缺点,每个页面都会加载所有模块,浪费资源时间
+    Vue.component('com1',{
+        template:`
+<div>
+    <input type="text" placeholder="请输入">
+    <span>
+        {{msg2}}
+    </span>
+</div>
+`,
+        // data:{msg2:'54'}报错
+        //由于vue代码内部设计,子组件里data必须写成返回键值对的函数
+        data: function () {
+            return {msg2:'854'}
+        }
+    });
+    var app=new Vue({
+        el:"#app",
+        name:'app',
+        data:{msg2:'hello'},
+        // 组件中template属性,里面写html代码,但是写在实例化中显得乱,所以之前的代码仍写在html地方.js中  单反引号类似python"""
+        // template:`<h5></h5>`
+
+        // 2.局部注册
+        components:{
+            'com2':{
+                name:'com2',
+                template:`<h5>组件2</h5>`
+            }
+        }
+    });
+
+//目前写法虽然表现了模块化开发,但是html,js,vue语法耦合在一起,项目一大不好维护,后面会"单文件"来组织这些代码
+</script>
+</html>

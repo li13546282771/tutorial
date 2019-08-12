@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo</title>
+    <script src="../vue.js"></script>
+    <style>
+        ul{list-style: none}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input type="text" v-model="inputValue" value="" v-on:keyup.13="handleSubmit">
+        <button v-on:click="handleSubmit" >提交</button>
+    </div>
+    <ul>
+        <li v-for="(todo,index) in todos">{{index+1}}.{{todo}}</li>
+    </ul>
+</div>
+</body>
+<script>
+    var app =new Vue({
+        el:'#app',
+        name:'todo',
+        data:{
+            inputValue:'',
+            todos:['购买书籍','给朋友','返回']
+        },
+        methods:{
+            handleSubmit:function () {
+                // console.log(this.inputValue);
+                // console.log(this.todos,typeof this.todos)
+                this.todos.push(this.inputValue);
+                this.inputValue=''
+            }
+        }
+    })
+</script>
+</html>

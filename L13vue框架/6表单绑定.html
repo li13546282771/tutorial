@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单绑定</title>
+</head>
+<body>
+<div id="app">
+<!--    用户输入的值等于input value属性的值 type为text自动等于,select单选手动指定
+        例1    表单绑定  v-model='变量',会自动把变量和value属性值进行绑定
+        .number过滤器,类似django中的过滤器{{date|format}},做简单转换处理-->
+    <input type="text" v-model.number="a" value="" id="num">
+    <input type="text" v-model.number="b" value="">
+    <span>{{a}}+{{b}} = {{a+b}}</span>
+<!--    例2 v-model原理.如果用js来做的话onchange事件  dom操作取input中的value,相加处理,dom插入值到span标签 ,比较麻烦 v-model 的原理v-on和v-bind-->
+<!--    <input type="text" v-on:input='searchText=($event.target.value)' v-bind:value="searchText">-->
+<!--    <span>{{searchText}}</span>-->
+<!--    例3  多选单选
+        多选v-model绑定到同一个列表中,data中的hobbies可以用来发送后端.比dom  getElement 循环查看value值方便-->
+    <br>
+    <input type="checkbox" value="1" name="hobbies" v-model="hobbies">足球
+    <input type="checkbox" value="2" name="hobbies" v-model="hobbies">篮球
+    <input type="checkbox" value="3" name="hobbies" v-model="hobbies">排球
+    <span>{{hobbies}}</span>
+    <br>
+    <input type="radio" value="1" v-model="sex">男
+    <input type="radio" value="0" v-model="sex">女
+    <span>{{sex}}</span>
+</div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var app =new Vue({
+        el:'#app',
+        name:'myapp',
+        data:{
+            a:0,
+            b:0,
+            // searchText:'',
+            hobbies:[],
+            sex:null
+        },
+        methods:{
+            searchText:function (user_input) {
+                this.searchText=user_input
+            }
+        }
+    })
+</script>
+</html>

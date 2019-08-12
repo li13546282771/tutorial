@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    上一节写的todo项目是一个页面,页面中两三个组件,如果应用更加复杂,多个页面,url区分不同的锚链接指向不同的页面,类似django中的urls.py
+页面跳转功能在vue中以vue-router插件形式存在,
+-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <h1>标题</h1>
+    <div class="components">
+<!--        5.定义锚链接和渲染组件-->
+<!--        router-link是入口,会渲染成a标签    to属性对应a标签的href属性,但是/com1转化成 #/com1 所以vuerouter实际上利用a标签指向div id页面快速定位
+            router-view 是出口,告诉组件渲染到哪里,控制渲染位置-->
+        <router-link to="/com1">点击跳转到com1</router-link>
+        <router-link to="/com2">点击跳转到com2</router-link>
+        <router-view></router-view>
+    </div>
+</div>
+<script>
+    //1.定义子组件
+    var com1 = Vue.component('com1',{
+        //假设com1是一个大组件代表一个页面,或网页局部的一个大功能
+        template:`<div>组件1</div>`
+    });
+    var com2=Vue.component('com2',{
+        template:`<div>组件2</div>`
+    });
+    //2.定义路由配置
+    const routes =[
+        {
+            path:'/com1',  //匹配127.0.0.1:8000/com1
+            component:com1
+        },
+        {
+            path:'/com2/',  //匹配F:/xx/html/com2
+            component:com2
+        },
+    ];
+    //3.实例化vueroutes,传入准备好的路由规则
+    const router=new VueRouter({
+       routes:routes
+    });
+
+
+    var app=new Vue({
+        // el:'#app',
+        name:'myapp',
+        // router:'router'
+        router, //4.
+    }).$mount('#app')
+</script>
+</body>
+</html>

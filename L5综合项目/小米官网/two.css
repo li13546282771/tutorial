@@ -1,0 +1,251 @@
+*{margin: 0;
+padding: 0;}
+.site-topbar{
+	background-color:#2B2B2B ;
+	height: 40px;
+	color:#A8A8A8;
+	font-size:12px ;}
+.container{width: 1226px;
+/* height: 40px; */
+margin: 0 auto;}
+.site-header{width: 100%;}
+ul{list-style:none;
+}
+/*让鼠标在文字上停留的时候变成手指*/
+.shine{cursor: pointer;
+}
+/*让鼠标在文字上停留的时候文字变成橙色*/
+.orange:hover{
+	color:orange;
+}
+.Unordered li:hover{color: aliceblue;}
+.Unordered{
+				line-height: 40px;
+				display:flex;
+				justify-content: space-between;
+				}
+.blank{width: 340px;}
+.site-header{display: flex;}
+.logo{margin-top: 20px;}
+.imga{width:55px;
+height: 55px;
+background-color:rgb(255,103,0);
+}
+.site-header .container{display: flex;
+				line-height: 100px
+				}
+.nav-list{display: flex;
+justify-content: space-between;}
+.header-nav{width: 1000px;}
+.blank1{margin-left:160px ;}
+.blank2{
+	margin-right: 50px; }
+.TextField{width: 300px;
+	height:45px;}
+.Show-dropdown{width: 100%;
+	height: 0;
+	border-top: 0 solid #CCCCCC ;
+	background: white;
+	box-shadow: 0 8px 5px -5px #3B3B3B;
+	transition: all 0.8s;
+	transition-delay:0.2s ;/*设置过渡效果何时开始*/
+	overflow: hidden;
+	z-index:3;
+	position: absolute;
+
+}
+.commodity{
+position: relative}
+.Commodity-images{
+	width: 100%;
+	border-right: 1px solid #CCCCCC;
+	margin-top: 40px}
+.commodity-name{
+	text-align: center;
+}
+.Commodity-prices{
+	text-align: center;
+	color: #FF832F;
+}
+.pannel{
+	display: flex;
+	justify-content: space-between}
+.New-product{
+	position: absolute;
+	border: 1px solid #FF832F;
+	color: #FF832F;
+	text-align: center;
+	top: 10px;
+	width: 80px;
+	left:1235px;}
+.second{
+	display: flex;}
+.img2{
+	/*position: relative;*/
+	display: flex;
+
+/*overflow: hidden*/
+}
+.img3{width: 1226px;
+	color:white;
+	}
+.home-hero-1{height: 460px}
+.img1{height: 460px;
+overflow: hidden;
+}
+.Article{height: 460px}
+.Article-black{
+	/*margin-top: 10px;*/
+	width: 234px;
+	cursor: pointer;
+	line-height:42px;
+	text-align: center;
+	color: white;
+padding-top: 4px}
+.nav-one{
+	position: absolute;
+	background-color:rgba(128, 128, 128,0.2)
+	/*color: white;*/
+}
+
+.Article-black:hover{
+	background-color:rgb(255,103,0);
+}
+.button1{}
+
+.button1{
+	display: flex;
+	margin-top: -300px; ;
+	width: 1226px;
+	font-size: 100px;
+}
+.left-button{margin-left: 260px;
+cursor: pointer;
+text-decoration: none;
+color:#CCCCCC}
+.right-button{padding-left:790px;
+cursor: pointer;
+text-decoration: none;
+color:#CCCCCC}
+
+.origin{
+	position: absolute;
+	width: 80px;
+	height: 20px;
+	margin-left:1100px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 130px;
+	padding-right: 20px;
+}
+.origin span{
+
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	border: 0.5px solid rgba(211,211, 211,0.5);
+	background: rgba(211,211, 211,0.5);
+	z-index:999;
+
+}
+
+
+.home-hero-2{display: flex;
+justify-content: space-between;
+padding-top: 10px}
+.img4{width: 316px;
+height: 170px;}
+.matts{width: 240px;
+height: 170px;
+background-color: rgb(95,87,80);
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: space-between;
+}
+.img5{
+	width: 80px;
+height: 72px;
+cursor: pointer;
+}
+.img5:hover{
+	color: white;
+}
+.img6{width:60px;
+height: 60px
+}
+.img7{height: 120px;
+width: 1226px;
+margin-top: 25px;
+margin-bottom: 30px;
+;}
+
+/*商品橱窗*/
+.page-main{
+	background-color: rgb(245,245,245);
+	height: 1000px;
+}
+.classification{
+	height: 57.6px;
+	padding-top: 40px;
+	font-size: 20px;
+	display: flex;
+}
+.imga1{
+	height: 25px;
+	width: 25px;
+	/*padding-top: 10px;*/
+}
+.more{
+	margin-left: 1050px;
+	display: flex;
+}
+.more:hover{
+	color:rgb(255,103,0);
+	cursor: pointer;
+}
+.Goods-cabinet{
+	height: 614px;
+	display: flex;
+}
+.imga2{
+	height: 614px;
+	width: 234px;
+}
+.span16{width: 992px;
+height: 614px;
+	/*border:1px solid red;*/
+	display: flex;
+	flex-wrap:wrap;
+	justify-content: space-between;
+	margin-left: 15px;
+}
+.Commodity-display{
+	width: 234px;
+	height: 300px;
+	background-color: white;
+	text-align: center;
+	/*padding-top: 5px;*/
+}
+.small-img{width: 160px;
+height: 160px;
+	padding-top: 30px;
+}
+.display-font span{font-size: 13px;
+	color: #CCCCCC;}
+.display-price{
+	color:rgb(255,103,0);
+font-size: 15px}
+.imga3{
+	width: 1226px;
+	height: 120px;
+
+}
+.imga4{
+	margin-top: 20px;
+}
+
+
+
+
+
+

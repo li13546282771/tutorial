@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--基于原型的继承,可以调用父类中的属性和方法-->
+    <script>
+
+    function People(name,age){
+        this.name= name;
+        this.age = age
+
+    }
+//    People.prototype={
+//        speak:function () {
+//            console.log('姓名'+this.name)
+//        }
+//    };
+        People.prototype.speak = function () {
+            console.log('姓名'+this.name)
+        };
+        function Student(name,age,stuID){
+        People.apply(this.arguments);
+        this.stuID = stuID
+        }
+        Student.prototype.study = function () {
+            console.log(this.name+'正在学习')
+        }
+
+        //当子类实例化时,父类会把自己的prototype属性的内容传递给子类的prototype中.  来实现继承.原型的不断传递就叫原型链
+        Student.prototype=Object.create(People.prototype);
+
+        var stu=new Student('张三',30,'001');
+        console.log(stu);
+        stu.speak()
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+介绍
+js本来是浏览器脚本语言,浏览器交互.后来随着互联网,浏览器.网站开发的盛行,越来越流行,.功能也要求更高
+谷歌浏览器chrome提升浏览器体验,基于开源chromium,chromium v8内核.  一个程序员大牛开发了基于v8引擎的解析器nodejs,提供的文件操作系统,网络系统等接口,从而可以开发服务端
+现状  nodejs出现后 各种服务端用的包 web框架等项目层出不穷  前端生态空前繁荣.  移动端开发.跨平台.前后端js一套等软件实践
+
+
+CLI:node.js跟python解释器类似  只不过是解释js语法的  conmand line 命令行工具
+GUI: graphic user interface 图形界面工具 类似qq
+
+开源项目  vue  react argular  nodebb  npm  electron  Github客户端   atom
+
+安装http://nodejs.cn/download/
+
+
+版本选择  LTS :long time service  长期服务版本;   bug维护期比较长  一两年以上  意味着这个版本更加稳定(推荐给绝大多数用户使用)
+current 最新版本,拥有最新的特性.功能.效率 但可能出bug
+.64位   大多数电脑已4G内存以上 64位操作系统
+.msi .zip  Microsoftinstaller  也就是.exe  自动添加环境变量  .zip需要手动添加环境变量
+
+安装向导
+全部next 
+说明 cusom setup   1node.jsruntime 语法解析器  2.npm (node package manager) node生态的包管理工具,类似py的pip
+3.  online doc 在线网页版文档  4 add to path 添加安装目录到win环境变量  
+
+验证:
+1.检查安装路径  C/progame files/node.js  下面是有内容的.有内容说明安装成功
+2.环境变量: 打开终端win+R运行  输入powershell打开终端  node -v  和npm -v检查版本.
+排错 node 不是有效的win32程序.函数.可执行文件. 原因环境变量未配置或未生效.先重启电脑排除未生效情况,如果重启电脑也不行的情况,如果未配置,可能由于权限问题安装包未能正确写入环境变量
+
+
+理解环境变量:
+终端运行一个程序,需要输入绝对路径,但太长,所以windou系统环境变量终端path 添加路径  这样输入node 时,windows就会从变量path中的路径下查找有没有这个命令.exe
+
+运行
+node xx.js
+路径 node.exe以配过环境变量直接node   xx.js绝对路径或相对路径  为了方便cd 工作目录
+绝对路径
+相对路径,相同级别  什么都不写或./   例如 " 项目根目录/L6node.js入门 "下  ./js或2.js   父级目录(当前文件的父级和父级同级的其他文件夹)../,例如../班级名单
+/ 划分目录   ,windows建议\\
+
+windows终端cd  dir
+dir 查看当前路径下子文件夹
+cd 路径  进入某一目录
+cd../  返回上一级
+tab  自动补全
+方向键↑ 调出上一条命令
+快捷:使用ide自带的cd好的终端
+
+webstorm 右键运行  node xxx.js
+
+#ide
+建议webstorm,vscode
+

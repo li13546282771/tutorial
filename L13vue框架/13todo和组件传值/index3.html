@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>todo  父子组件传值 子传父</title>
+
+    <script src="../vue.js"></script>
+    <style>
+        ul{list-style: none}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input type="text"
+               v-model="inputValue"
+               value=""
+               v-on:keyup.Enter="handleSubmit"
+        >
+        <button v-on:click="handleSubmit" >提交</button>
+    </div>
+    <ul>
+        <todo_item
+                v-for="(item,index) in todos"
+                v-bind:content="item"
+                v-bind:index="index"
+                v-bind:key="index"
+                @delete="handleDelete"
+        >
+        </todo_item>
+    </ul>
+</div>
+</body>
+<script>
+    // 子组件data传到父组件中   需求点击li标签后，子组件传递index给父组件，父组件根据index删除todos列表的那一项
+    //1.父组件自定义一个事件
+    //2 子组件主动发射触发父组件事先定义好的事件,可以携带参数
+     //3 父组件自定义事件被触发了,开始走方法
+    Vue.component('todo_item',{
+        name:'todo-item',
+        template:'<li @click="handleClick">{{index+1}}.{{content }}</li>',
+        props:['content','index'],
+        methods:{
+            handleClick:function () {
+                // console.log(this);//子组件todo-item
+                // // console.log(index)
+                // console.log(this.index);//可以获取到props接收的参数
+                // console.log(app.todos);// 通过父组件名可以取到
+                // app.todos.splice(this.index,1)   //可以实现效果但组件不够独立,不建议这种方式,父组件的数据可能被某个子组件污染
+
+                //好像公司上下级关系,下级没有权限直接修改父级,只能通知父级去修改
+                // 子传父需要主动通知父(自定义事件);父需要准备事件来捕获通知
+                this.$emit('delete',this.index)
+            }
+        }
+    });
+    var app =new Vue({
+        el:'#app',
+        name:'todo',
+        data:{
+            inputValue:'',
+            todos:['购买书籍','给朋友','返回']
+        },
+        methods:{
+            handleSubmit:function () {
+                this.todos.push(this.inputValue);
+                this.inputValue=''
+            },
+            handleDelete:function (index) {
+                console.log(index);
+                this.todos.splice(index,1)
+            }
+        }
+    })
+</script>
+</html>

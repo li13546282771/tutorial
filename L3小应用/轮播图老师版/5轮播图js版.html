@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    a {
+      text-decoration: none;
+    }
+    #container {
+      position: relative;
+      width: 400px;
+      height: 300px;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+    .photos {
+      position: absolute;
+      width: 1200px;
+      height: 300px;
+      /*left: -400px;*/
+      z-index: 1;
+    }
+    .photos>img {
+      width: 400px;
+      height: 300px;
+      float: left;
+    }
+    .buttons {
+      position: absolute;
+      width: 100%;
+      color:black;
+      z-index: 2;
+    }
+    .arrows {
+      position: absolute;
+      width: 400px;
+      top: 100px;
+      font-size: 50px;
+      color: white;
+      z-index: 2;
+    }
+    .arrow-right {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+		<!-- 图片区 -->
+    <div class="photos">
+      <img src="1.jpg">
+      <img src="2.jpg">
+      <img src="3.jpg">
+    </div>
+		<!-- 页码区 -->
+    <div class="buttons">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+    </div>
+		<!-- 左右切换箭头 -->
+    <div class="arrows">
+      <a href="#" class="arrow-left"> &lt; </a>
+      <a href="#" class="arrow-right"> &gt; </a>
+    </div>
+  </div>
+
+  <script>
+    // var photos = document.getElementsByClassName('photos')[0]
+    var photos = document.querySelector('.photos')
+    var previrous = document.querySelector('.arrow-left')
+    var next = document.querySelector('.arrow-right')
+
+    // 向后
+    function switchNext(e){
+        var currentLeft = photos.style.left   // "" "-400px"
+        currentLeft = Number(currentLeft.replace('px', ''))
+        var newLeft  = currentLeft - 400
+        if (newLeft < -800){    /*点到最后回到第一张，图片个数减1乘宽度*/
+            newLeft = 0
+        }
+        photos.style.left = String(newLeft) + 'px';
+
+        // 图片激活时高亮
+        var activeIndex = Math.abs(newLeft/400)
+        var spans = document.querySelectorAll('.buttons>span')
+        // var activeSpan = spans[activeIndex];  // console.log(photos.children)  // childNodes 子文字和节点
+        for (var i=0; i<spans.length;i++){
+          if(i==activeIndex){
+              spans[activeIndex].style.color = "red";
+          }else {
+              spans[i].style.color = "black";
+          }
+        }
+    }
+    next.onclick = switchNext;
+
+    // 向前
+    previrous.onclick = function(e){
+        var currentLeft = photos.style.left
+        currentLeft = Number(currentLeft.replace('px', ''))
+        var newLeft  = currentLeft + 400
+        if (newLeft > 0){    /*第一张向前回到0或最后一张*/
+            newLeft = 0
+        }
+        photos.style.left = String(newLeft) + 'px';
+    }
+
+    // 自动切换
+    var auto = setInterval(function(){
+      switchNext();
+    }, 2000)
+
+    // 鼠标悬浮停止自动切换
+    photos.onmouseover = function(){
+        clearInterval(auto);
+        auto = null;
+    }
+    photos.onmouseout = function(){  // setInterval是全局的，不能声明两个，先定义一个全局的再清空
+      auto = setInterval(function(){
+        switchNext();
+      }, 2000)
+    }
+
+
+    // 作业: 1.向前
+    // 2.图片编号激活时高亮( doc.getChilds 每次点击增加索引)
+    // 3. setInterval(fun(), 5000)  每隔几秒自动切换
+    // 4. 鼠标悬停，自动切换暂停，鼠标离开再次开启自动切换
+    previrous.onclick()
+  </script>
+</body>
+</html>
+
+<!--
+转移字符，为了避免关键字冲突 <> ,&lt;
+
+两个div重合：
+1. 把重合的每一个小div包裹在一个大的父div下。
+2. 大div 定位为相对定位，作为比较的基准
+3. 小div 定位设置为 绝对定位，left top相对于大div做偏移
+4. 调整哪个图层在前 z-index
+
+自动切换
+ setInterval(function(){
+    photos.style.left -400
+}, 2000)
+
+删除字符串子串或替换
+'400px'.replace('px', '')
+字符串转数字
+Number("400")
+parseInt("400")
+数字转字符串
+String(-800)
+-800 + "px"
+
+建议学习方式：多看控制台输出的对象和它的属性。
+-->

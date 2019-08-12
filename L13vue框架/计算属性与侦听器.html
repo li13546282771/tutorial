@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="example">
+    <p>字符串:{{mes}}</p>
+    <p>翻转字符串:{{reversedMessage()}}</p>
+</div>
+<div id="demo">{{ fullName }}</div>
+</body>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#example',
+        data:{
+            mes:'hello'
+        },
+        // computed:{
+        //     revermes:function () {
+        //         return this.mes.split('').reverse().join('')
+        //     }
+        // },
+        methods: {
+            reversedMessage: function () {
+                return this.mes.split('').reverse().join('')
+            }
+        }
+    });
+    var vm1 = new Vue({
+        el: '#demo',
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar'
+        },
+
+        computed: {
+            fullName: {
+                // getter
+                get: function () {
+                    return this.firstName + ' ' + this.lastName
+                },
+                // setter
+                set: function (newValue) {
+                    var names = newValue.split(' ');
+                    this.firstName = names[0];
+                    this.lastName = names[names.length - 1]
+                }
+            }
+        }
+    })
+</script>
+</html>

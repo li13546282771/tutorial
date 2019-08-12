@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function People(name,age){
+        this.name = name;
+        this.age = age;
+        this.speak = function () {
+            console.log(`名字{this.name}`)
+        }
+    }
+
+    //stdent子类  继承 people父类
+    function student(name,age,stuID){
+        People.apply(this.arguments);
+        this.stuID = stuID;
+        this.study=function () {
+            console.log('学习')
+        }
+    }
+
+    //子类实例化,首先在子类里找有没有属性,没有的话去父类里找
+    //__proto__有完整的构造方法
+    var stu1 = new student('小明',20,'001');
+    console.log(stu1);
+//    stu1.speak();
+    stu1.study();
+//    缺点:这种方式只能继承属性,不能继承方法.
+</script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.container{
+				width: 400px;
+				height: 300px;
+				overflow: hidden;
+				margin: 0 auto;
+				position: relative;
+			}
+			.photo{
+				width: 1600px;
+				height: 100%;
+				position: absolute;
+				z-index: 1;
+			}
+			.photo>img{
+				width: 400px;
+				height: 300px;
+				float: left;
+			}
+			a{
+				text-decoration: none;
+			}
+			.arrows{
+				font-size: 50px;
+				color: white;
+				position: absolute;
+				z-index: 2;
+				width: 400px;
+				top: 100px;
+			}
+			.arrow-right{float: right;}
+			.buttons{
+				position: absolute;
+				z-index: 2;
+				width: 80px;
+				top: 280px;
+				left: 170px;
+				display: flex;
+				color:black;
+				justify-content: space-around;
+			}
+			
+			/* 小圆点样式设计 */
+			.buttons span{
+				float: left;
+				width: 10px;
+				height: 10px;
+				border-radius:50%;
+				background: white;
+				margin: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="photo">
+				<img src="轮播图图片/1.jpg" >
+				<img src="轮播图图片/2.jpg" >
+				<img src="轮播图图片/3.jpg" >
+				<img src="轮播图图片/4.jpg" >
+			</div>
+			<div class="buttons">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+			<div class="arrows">
+				<a href="#"class="arrow-left">&lt;</a>
+				<a href="#"class="arrow-right">&gt;</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			
+			var a =function(){
+				var newLeft=photos.style.left;
+				newLeft = Number(newLeft.replace('px',''))
+				
+				var activeIndex = Math.abs(newLeft/400)
+				var spans = document.querySelectorAll('.buttons>span')
+				// console.log(spans)
+				for (var i=0; i<spans.length;i++){
+				  if(i==activeIndex){
+				      spans[activeIndex].style.background = "red";
+				  }else {
+				      spans[i].style.background = "black";
+				  }
+				}
+				}
+			
+			
+			var photos = document.querySelector('.photo')
+			var previrous=document.querySelector('.arrow-left')
+			var next = document.querySelector('.arrow-right')
+			
+		
+
+			function switchNex(e){
+				var currentLeft=photos.style.left;  //'-400px'
+				currentLeft= Number(currentLeft.replace('px',''));
+				var newLeft =currentLeft-400;
+				if (newLeft<=-1600){//(图片个数-1)*图片宽度
+				    newLeft=0
+				}
+				photos.style.left =String( newLeft+'px');
+				console.log(photos.style.left)
+				a();
+				}
+				
+				next.onclick = switchNex;
+				
+			//向前
+			previrous.onclick=function(e){
+//				console.log(photos.style);
+				var currentLeft=photos.style.left;
+				console.log(currentLeft)
+				// console.log(currentLeft)
+				currentLeft= Number(currentLeft.replace('px',''));
+				var newLeft =currentLeft+400;
+				if (newLeft>0){
+				    newLeft=-1200
+				}
+				photos.style.left =String( newLeft+'px');
+				console.log(photos.style.left)
+			a()
+			};
+			
+			
+			//自动轮播
+			
+			var auto= setInterval(function(){
+				var currentLeft=photos.style.left;
+				
+				currentLeft= Number(currentLeft.replace('px',''));
+				var newLeft =currentLeft-400;
+				if (newLeft<=-1600){
+				    newLeft=0
+				}
+				photos.style.left =String( newLeft+'px');
+				a();
+				// console.log(photos.style.left)
+			},2000)
+			
+			
+			//鼠标悬停时自动切换
+			photos.onmouseover = function(){
+				clearInterval(auto)
+				auto=null;
+			}
+			photos.onmouseout = function(){
+				auto=setInterval(function(){
+				var currentLeft=photos.style.left;
+				
+				currentLeft= Number(currentLeft.replace('px',''));
+				var newLeft =currentLeft-400;
+				if (newLeft<=-1600){
+				    newLeft=0
+				}
+				photos.style.left =String( newLeft+'px');
+				// console.log(photos.style.left)
+			},2000)
+			}
+			
+			
+			
+			//作业1.向前
+			// 2.图片编号激活时高亮(doc.getChilds  每一次点击时索引发生变化)
+//			3.setInterval(function () {},5000)每个几秒自动切换
+//			4.动效
+		</script>
+	</body>
+</html>
+
+<!-- 转义字符,为了避免关键字冲突 -->
+<!-- 页面div重合:把重合的每一个小div都包裹在一个大的父div下 -->
+
+<!-- 两个div重合:
+1.把重合的每一个小div包裹在一个大的父div下
+2.大div 定位为相对定位,作为比较基准
+3.小div 定位为绝对定位,left top相对与大容器的基准做偏移 -->
+
+<!-- 4.调整那个图层在前z-index -->
+
+<!-- 删除字符串字串
+‘400px’。replace（‘px’，‘’）
+字符串转数字Number（‘400’）
+parseInt（‘400’） -->
+<!--数字转字符串string()
+-->

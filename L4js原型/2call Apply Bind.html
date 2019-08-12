@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Call Apply Bind</title>
+</head>
+<body>
+<script>
+//    this 定义:谁调用this ,this就指向谁,this其实就是变量.
+    //类里面的this  表示类的对象
+    //全局语句this指向window
+//    js里对象.变量都是全局的
+    console.log(this); //window.顶级js脚本  ,整个窗口对象执行这句话
+     function f1(){
+         // {f1:function(){}
+
+    console.log(this)}
+    f1();
+//widow.
+
+
+        //变量全局导致的bug
+//注意声明的变量不要重复使用
+        var sum = 0;
+     function add(){
+         sum =sum+1
+     }
+
+
+     //call
+//js脚本顶级交互对象window{f2:function(){} }
+//doc html顶级对象
+    function f2(a,b) {
+        console.log(a,b);
+        console.log(this)
+    }
+    f2(3,5);//window.f2
+    f2.call(document.body);//改变f2对象的调用者
+//    python 类里的super(self,people).__init__()
+
+    //apply
+    f2.apply(document.body,[3,5]);
+//a,b=[3,5]类似结构赋值
+
+
+        //面试call 和apply有什么区别，都是为了改变对象的调用者，区别call一个个传参，apply一块传
+    //bind
+    //类似py
+    function f4() {
+        console.log(this)
+    }
+    var nf = f4.bind(document.body);
+    nf()
+    //面试:call apply马上执行,bind先绑定在调用
+</script>
+
+</body>
+</html>

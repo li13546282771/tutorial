@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>todo  父子组件传值 子传父</title>
+
+    <script src="../vue.js"></script>
+    <style>
+        ul{list-style: none}
+        .a{text-decoration: line-through ;
+            color:#CCCCCC}
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <input type="text"
+               v-model="inputValue"
+               value=""
+               v-on:keyup.Enter="handleSubmit"
+        >
+        <button v-on:click="handleSubmit" >提交</button>
+    </div>
+    <ul>
+        <todo_item
+                v-for="(item,index) in todos"
+                v-bind:content="item"
+                v-bind:index="index"
+                v-bind:key="index"
+                :style=[]
+        >
+        </todo_item>
+    </ul>
+</div>
+</body>
+<script>
+    Vue.component('todo_item',{
+        name:'todo-item',
+        template:'<li @click="handleClick">{{index+1}}.{{content }}</li>',
+        props:['content','index','css'],
+        methods:{
+            handleClick:function () {
+                this.$emit('delete',this.index)}
+        }
+    });
+    var app =new Vue({
+        el:'#app',
+        name:'todo',
+        data:{
+            inputValue:'',
+            todos:['购买书籍','给朋友','返回']
+        },
+        methods:{
+            handleSubmit:function () {
+                this.todos.push(this.inputValue);
+                this.inputValue=''
+            },
+            handleDelete:function (index) {
+
+            }
+        }
+    })
+</script>
+</html>

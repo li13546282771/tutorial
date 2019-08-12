@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+
+    a {
+      text-decoration: none;/*隐藏a标签的样式下划线*/
+    }
+    ul, li {
+      list-style: none;   /*隐藏列表的样式*/
+    }
+    .second {            /*初始化隐藏二级菜单*/
+      display: none;    /* ul本身块元素。显示block */
+    }
+    /*伪类选择器 a:hover  a:visited   :after  :before */
+    /* :target 锚链接指向的那个元素*/
+    .second:target {/*要让a标签的href='#二级标签的id'*/
+      display: block;/*设置为出现*/
+    }
+  </style>
+<!--  css实现二级菜单，适合简单的情况。-->
+</head>
+<body>
+  <ul class="first">
+    <li><a href="#digit">数码</a>
+      <ul id="digit" class="second">
+        <li><a href="#">手机</a></li>
+        <li><a href="#">电脑</a></li>
+        <li><a href="#">智能手表</a></li>
+      </ul>
+    </li>
+    <li><a href="#food">食品</a>
+      <ul id="food" class="second">
+        <li><a href="#">零食</a></li>
+        <li><a href="#">生鲜</a></li>
+      </ul>
+    </li>
+    <li><a href="#cloth">服装</a>
+      <ul id="cloth" class="second">
+        <li><a href="#">男装</a></li>
+        <li><a href="#">女装</a></li>
+      </ul>
+    </li>
+  </ul>
+
+</body>
+</html>
+
+
+<!--1. 一级菜单用ul标签实现。去除列表默认风格，添加背景。 float：left横向菜单
+2. 二级菜单：一级ul的li又嵌套另一个ul
+3. 网页刚加载，隐藏二级菜单。 display：none（源代码不会加载）。visibility:hidden (源代码加载但用户看不到).
+4. 一级菜单li中的a链接通过href="#id" 指向二级菜单的ul标签。点击一级菜单后二级菜单成为目标target，触发相关的css变化。
+-->

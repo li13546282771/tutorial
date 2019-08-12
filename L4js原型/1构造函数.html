@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //字面量对象  对象.函数的语句体{}  键值对可以是函数
+    var pl={
+        name:'张三',
+        age:28,
+        speak:function () {
+            console.log('学生姓名:'+this.name+'今年'+this.age+'岁')
+        }
+    };
+   console.log(pl);
+    //js没有专门的类,但可以用其他方式(构造函数)来实现类似效果,只是功能比后端语言弱
+    //跟python很像,只不过没有专门的关键字.函数名驼峰风格,括号里是实例需要的参数
+    //this代表实例(类似于python中的self)this.name属性 this.function()  方法
+    function People(name,age,nation){
+        this.name = name;
+        this.age  =age;
+        this.nation=nation || '汉族';   //  ||或 (类似python中的or)
+        this.speak = function () {
+            console.log(`学生姓名{this.name},学生年龄{this.age}`)
+        }
+    }
+    var p2 = new People('张三',30);
+    var p3 = new People('张三',18,'回族');
+    console.log(p2);
+    console.log(p3);
+</script>
+</body>
+</html>
+
+<!--原型:继承的底层原理,为了面试提问(面试概率高)-->
+<!--偏底层,平时工作不会遇到
+尽量理解

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>圣杯布局</title>
+		<style type="text/css">
+			.header{
+				/* height: 60px; */
+				background-color: #CCCCCC;
+				text-align: center;
+				padding: 30px;
+			}
+			.navigation{
+				height: 30px;
+				background-color: #269ABC;
+				color: white;
+			}
+			.navigation li{
+				float: left;
+				margin-left: 20px;
+				list-style: none;
+			}
+			.navigation li a{
+				color: white;
+				text-decoration: none;
+				
+			}
+			.content{
+				height: 200px;
+				background-color: #CCCCCC;
+			}
+			.column{
+				height: 100%;
+				background-color: #008000;
+				width: 33.33%;
+				/* border: 1px solid red; */
+				float: left;
+			}
+			.footer{
+				height: 30px;
+				background-color: #000000;
+			}
+			
+		</style>
+		
+	</head>
+	<body>
+	<div id="contaniner">
+		<header class="header">头部</header>
+		<nav class="navigation">
+			<ul>
+				<li><a href="#">导航1</a></li>
+				<li><a href="#">导航2</a></li>
+				<li><a href="#">导航3</a></li>
+				<li><a href="#">导航3</a></li>
+			</ul>
+		</nav>
+		<div class="content">
+			<div class="column"></div>
+			<div class="column"></div>
+			<div class="column"></div>
+		</div>
+		<footer class="footer">
+			
+		</footer>
+	</div>
+		
+	</body>
+</html>
+<!-- div本身没有面积,有内容撑起来或显式定义宽高
+ 切图思路:每行一个整体分块.分好后每一行的小块继续分,横向浮动
+ div文字垂直,不定义div的高度,文字周围加padding,height和padding不要同时定义
+ ul li标签也是块元素
+ 父div高度已确定,里面的子div内容高度+padding >父div高度,容易影响后面的布局
+ 
+ -->

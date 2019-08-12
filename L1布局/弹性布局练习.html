@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+         body{
+            background: #000;
+        }
+         .pip{
+             width: 25px;
+             height:25px;
+             background-color: black;
+             border-radius: 50%;
+         }
+         [yangshi='1']{width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 15px;
+			margin: 50px;
+			padding: 5px;}
+        .first-face {
+            display: flex;
+            justify-content: center;/*水平居中*/
+            align-items: center;/*垂直居中*/
+        }
+        .second-face{
+            display: flex;
+            justify-content: space-around}
+        .second-face .pip:nth-of-type(2) {
+             align-self: flex-end;
+    }
+        .third-face{display: flex;
+        justify-content: space-around;
+        }
+        .third-face .pip:nth-of-type(2) {
+  align-self: center;
+}
+
+		.third-face .pip:nth-of-type(3) {
+	align-self: flex-end;
+}		
+		.fifth-face {
+		  display: flex;
+		  justify-content: space-between;
+}
+
+		.fifth-face .z {
+		  display: flex;
+		  flex-direction: column;
+		  justify-content: space-between;
+		}
+
+		.fifth-face .z:nth-of-type(2) {
+		  justify-content: center;
+		}
+		
+		
+    </style>
+</head>
+<body>
+    <div class="first-face" yangshi="1">
+        <span class="pip"></span>
+    </div>
+    <div class="second-face"yangshi="1">
+        <span class="pip"></span>
+        <span class="pip"></span>
+    </div>
+    <div class="third-face"yangshi="1">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+    </div>
+	<div class="fifth-face" yangshi='1'>
+		<div class="z">
+			<span class="pip"></span>
+			<span class="pip"></span>
+		</div>
+		<div class="z">
+			<span class="pip"></span>
+		</div>
+		<div class="z">
+			<span class="pip"></span>
+			<span class="pip"></span>
+		</div>
+		
+	</div>
+</body>
+</html>

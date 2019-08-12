@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画小猪</title>
+    <style>
+        #body{
+            margin-top: 200px;
+            margin-left: 200px;
+            position: relative; /*把身体div当作基准点*/
+            width: 200px;
+            height: 150px;
+            border: 1px;
+            background-color: rgb(243,173,143);
+            border-radius: 120px 120px 100px 100px; /*左上 右上  右下 左下  值是圆角半径 50%表示正圆的弧度*/
+        }
+        #ear{
+            /*ear区域相对于body区域移动*/
+            /*绝对定位之后,有left right top bottom  跟margin-ieft*/
+            position: absolute;
+            top: -10px;
+            height:50px;
+            width: 100%;
+            /*border:1px solid red;*/
+        }
+        /*伪元素  (一般情况下不建议)   动态生成一小段html内容   场景:动态添加一小段不太复杂的提示文字  默认行元素
+        before 把content属性值的内容渲染到标签原内容前面  after  会把content内容放到原内容后面
+        区分a:onblur 表示状态*/
+        #ear:before{
+            content: '';/*必须属性 否则内容不渲染*/
+            display: inline-block;/*默认文字为行级元素,设置宽高要转换成行内块*/
+            width:50px;
+            height:50px;
+            background-color: #f37f52;
+            border-radius:50%  0  50% 0;
+            box-shadow: 1px 1px 4px #000;/*阴影方向向右正  阴影方向向下正(值越大纵深感越强  阴影大小  颜色)*/
+        }
+        #ear:after{
+            content: '';/*必须属性 否则内容不渲染*/
+            display: inline-block;
+            width:50px;
+            height:50px;
+            background-color: #f37f52;
+            border-radius:0 50%;/*圆角和上面不一样*/
+            box-shadow: 1px 1px 4px #000;
+            float: right;
+        }
+        #eye{
+            position: absolute;
+            height:20px;
+            width: 200px;
+            /*border:1px solid black;*/
+            margin-top: 60px;
+        }
+        #eye-left{float: left;
+            margin-left: 40px;
+        }
+        #eye-right{float: right;
+        margin-right: 40px}
+        /*只选择第一层孩子*/
+        #eye>div:before{
+            content: '';
+            display: inline-block;
+            width:0;
+            height:0;
+            border-width: 4px;
+            border-style: solid;
+            border-color: transparent #000 transparent transparent;
+            /*margin-right: 50px;*/
+        }
+        #eye>div:after{
+            content: '';
+            display: inline-block;
+            width:6px;
+            height:8px;
+            background: #000;
+            border-radius: 0 50% 50% 0;
+            /*margin-left: 50px;*/
+        }
+        #mouth{
+            width: 60px;
+            height: 30px;
+            position:relative; /*相对自己本来的位置:搭配子元素的绝对定位布局*/
+            /*margin-top: 90px;*/
+            background-color: #f37f52;
+            margin-left: 50%;
+            left:-30px;
+            top: 80px;
+            text-align: center;
+            border-radius: 5px ;
+        }
+        #mouth:before{
+
+            content:'' ;
+            display: inline-block;
+            width: 10px;
+            height:10px;
+            border-radius:50%;
+            background-color: black;
+        }
+        #mouth:after{
+            content:'' ;
+            display: inline-block;
+            width: 10px;
+            height:10px;
+            border-radius:50%;
+            background-color: black;
+            margin-left: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pig">
+        <div id="body">
+            <div id="ear"></div>
+            <div id="eye">
+                <div id="eye-left"></div>
+                <div id="eye-right"></div>
+            </div>
+            <div id="mouth"></div>
+            <div id="foot-left"></div>
+            <div id="foot-right"></div>
+        </div>
+    </div>
+</body>
+</html>

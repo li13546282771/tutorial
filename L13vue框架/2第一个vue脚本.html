@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第一个vue脚本</title>
+    <!--引入vue.js-->
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="myapp">
+        vue初识
+        <h1>{{text}}</h1>
+        <h1>{{title}}</h1>
+    </div>
+<script>
+    //实例化vue实例.参数是一个大对象,js对象{}属性,值键值对方式
+    //new vue()实例化出来的是全局组件,整个html页面只有一个组件
+    //Vue实例化对象参数:
+    //el:element 挂载元素,习惯上在body标签下,建一个带id的div作为挂载点
+    //name:标识组件名,默认组件名叫root app之类,自定义随便写
+    //data:与html绑定值的地方,data的值是一个对象,包含多个变量.往往通过请求后端得到数据和设置,html部分通过双大括号进行插值
+
+
+
+    //vue实例属性$打头
+    //console中  $vm0 来查看vue实例(要求已安装vue-devTools)
+    //vue实例取属性需要根据vue实例结构去取值
+    //实现一个功能有实例化传参配置写法,也可以函数式写法
+    //vue实例化时data下的属性会作为vue实例对象的属性.变量名方法名注意不要重名
+    var app=new Vue({
+        el:"#myapp",
+        name:'myapp',
+        data:{title:'hello,world',text:"我的一个vue页面"}
+    });
+    console.log(app);
+    // console.log(app.name); //undefined
+    console.log(app.$el);
+    // console.log(app._data.text);
+
+    console.log(app.text);//
+
+</script>
+</body>
+</html>

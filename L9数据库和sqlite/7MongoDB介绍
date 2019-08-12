@@ -1,0 +1,30 @@
+nosql和关系型数据库互补,适用不用场景
+
+例如student = [
+{'id'=1,'name'='小明','age':13}
+{'id'=2,'name'='小明','age':13}
+{'id'=3,'name'='小明','age':13}
+
+]
+关系student(id int primary key
+
+
+
+https://www.mongodb.com/download-center/community
+版本 选择 免费社区版  当前稳定版(rc备选版本,bug较多,beta测试版;正式版),msi exe安装包
+
+
+
+安装
+保持默认选项安装,安装完成后可以在服务中看到mongodb服务.初始时没有用户名密码,保持客户端登录`mongo`
+
+可能出现的错误:
+1 显式无权限注册服务. 解决选ignore 稍后手动启动服务.
+2  没有配置环境变量  解决  手动配置
+
+手动启动服务 终端`mongod`
+可能报错: shutdiwb因为没有数据存储目录  c:data/db
+解决:手动创建
+
+客户单测试登录  终端(刚开始无密码) `mongo`
+测试一条sql `show dbs`

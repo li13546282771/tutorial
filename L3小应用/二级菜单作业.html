@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			*{margin: 0;
+			padding: 0;}
+			#nav{background-color: #1c86EE;}
+			#nav-bar{
+				width: 1000px;
+				margin: 0 auto;
+				height: 20px;}
+			#nav-list{
+				display: flex;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				position:relative;
+				justify-content: space-between;
+			}
+			.second{list-style: none;}
+		</style>
+	</head>
+	<body>
+		<nav id="nav">
+			<div id="nav-bar">
+				<ul id="nav-list">
+					<li class="nav-item">
+					首页
+					<ul class="second">
+						<li>
+							
+						</li>
+					</ul>
+					</li>
+					<li class="nav-item">
+					国内
+					<ul class="second">
+						<li>各地</li>
+						<li>国内</li>
+					</ul>
+					</li>
+					<li class="nav-item">
+					国际
+					<ul class="second">
+						<li>国际</li>
+						<li>国际</li>
+					</ul>
+					</li>
+					<li class="nav-item">
+					军事
+					<ul class="second">
+						<li>军事</li>
+						<li>军事</li>
+					</ul>
+					</li>
+					<li class="nav-item">
+					财经
+					<ul class="second">
+						<li>财经</li>
+						<li>财经</li>
+					</ul>
+					</li>
+					<li class="nav-item">
+					互联网
+					<ul class="second">
+						<li>互联网</li>
+						<li>互联网</li>
+					</ul>
+					</li>
+					<li class="nav-item">
+					房地产
+					<ul class="second">
+						<li>房地产</li>
+						<li>房地产</li>
+					</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<script type="text/javascript">
+			var second = document.getElementsByClassName('second')
+			for (var i = 0; i < second.length; i++) {
+				second[i].style.display = 'none';
+				second[i].parentNode.onclick=function(event){
+					ul=event.target.firstElementChild
+					if (ul.style.display == "none"){
+        ul.style.display="block";
+      }else if(ul.style.display == "block"){
+        ul.style.display="none";
+      }  
+				}
+				
+			}
+		</script>
+	</body>
+</html>
