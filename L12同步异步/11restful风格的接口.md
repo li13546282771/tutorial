@@ -65,7 +65,3 @@ sql
     name
 
 现状:行业新闻上graphSQL是下一代api风格,会取代rest,但它也有自己缺点,目前还是rest多
-
-
-
-django  flask 都
