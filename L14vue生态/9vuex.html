@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--vue组件状态管理工具-->
+<!--父子组件传值props  $emit  组件1包含组件2 ,组件2包含组件3,组件多层嵌套.组件1和3互相传递数据,或组件较多时;导致数据传递越来越复杂,难以维护-->
+<!--我们想,把vue实例data和数据改变部分抽出来,放到公共部分,各个组件从中取数据修改数据,检测变化.把数据拿出来进行集中管理-->
+<!--适用:大型项目-->
+
+<!--下面的实例没有使用vuex-->
+<div id="app">
+    <p>{{count}}
+    <button @click="inc">+</button>
+    <button @click="dec">-</button>
+    </p>
+</div>
+<script src="vue.js"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        // data:{count:0}
+        //data:function(){return {count:0}}
+        data(){
+            return{
+                count :0
+            }
+        },
+        methods:{
+            inc(){
+                this.count++
+            },
+            dec(){
+                this.count--
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="vuex.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>{{count}}
+        <button @click="inc">+</button>
+        <button @click="dec">-</button>
+    </p>
+</div>
+
+<script>
+    //实例化vuex数据管理仓库
+    const store = new Vuex.Store({
+        state:{
+            count:0
+        },
+        mutations:{
+            inc: state =>state.count++,
+            dec: state =>state.count--
+        }
+    })
+    // 实例化vue
+    const app = new Vue({
+        el:'#app',
+        computed:{
+            count(){
+            return store.state.count}
+        },
+        methods:{
+            inc(){
+                store.commit('inc')
+            },
+            dec(){
+                store.commit('dec')
+            },
+        }
+    })
+</script>
+</body>
+</html>
+<!--
+对比上一节传统的写法,使用vuex之后发现以下异同
+1.代码量增多了,所以不适合简单程序
+2.不像以前直接操作data中的变量,变量存储在store中,读数据写一个计算属性,从store中state取数据.写数据需要methods中提交触发store中的mutation变更
+总结:把原来组件中的data数据部分抽出来单独管理(好像小数据库),读写数据操作store接口才能读写数据.数据和组件行为变得独立(数据和组件行为解耦)
+store: 存放数据的大仓库,一个vue项目中只有一个vuex实例
+state:直译状态,其实就是数据的值,原来vue实例中的data
+mutations:直译变异.其实类似后端的getter.setter函数.逻辑比较基础,这样分层后,外部组件不能直接修改数据,必须commit触发mutation来修改.出现bug后可以明确知道是底层mutation出问题还是组价逻辑应用层出问题.mutations就好像是变量的操作接口
+
+同步调用.缺点,业务层异步调用多个mutation不知道哪个先回调
+action:动作.类似methods事件方法,action负责commit触发mutation.异步调用  action类似python中grequest
+mutation类似request包  载荷,其实就是传参   dispatch
