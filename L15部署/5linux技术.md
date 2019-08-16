@@ -61,7 +61,13 @@ drwxr-xr-x
 卸载软件  apt uninstall  软件名  部分软件无法卸载
 
 ## 文本处理
+touch xxx.xx  创建文件
+cp 要复制的文件 复制后的文件名字       复制文件
 cat xxx.xx   查看文件里面的文本信息
+rm xxx.xx 删除一个文件   remove
+    rm -r /directory/*  删除一个文件夹下所有文件.  r recursion递归 循环删除一个文件夹下的所有文件
+    所以 rm -r /* 会把系统所有文件删掉导致无法启动
+
 vi : 强大的历史悠久的命令行文本编译器,可定制性强,插件
 ecma:另一款强大的编译器
 nano:比较简单,类似windows文本编辑器.可能需要安装.apt install nano
@@ -71,3 +77,29 @@ vim:vi加插件封装而成,相对vi更加易用.linux自带
      编辑状态   按insert键进入 屏幕下方有提示---insert---,按esc键退出
      命令状态   正常状态下  shift+;  进入命令模式,下方显示冒号:  w保存  q退出 !q强制退出
      众多快捷键和插件详见网上
+     
+##查找
+find   比 whereis更加强大
+whereis python   打印涉及到关键字的所有路径
+管道符和正则     | grep   上一句执行的结果为下一句的参数 grep  正则  常用来筛选     ls /etc | grep .d
+
+##  软链接
+Ubuntu16.04中   python 指向py2.7   python3指向3.5
+自己安装python3.7  安装完后python3指向python3.7
+ln -s /usr/python3.7 /usr/python3   
+软链接类似windows中的快捷方式
+
+##进程
+top 查看当前进程和占用资源.类似windows中的人物管理器
+ps -ef 查看进程
+netstat -tul 查看网络连接情况.查看端口有没有被占用
+kill [pid]   结束进程
+
+## ps 
+进程状态:运行.睡眠.终止.zombie僵尸
+cpu
+内存:跟windows计算不太一样 .内存使用率100% 真正使用是used 真正使用的内存.
+swap交换区 类似windows上的分页文件  swap满载意味着内存不够
+PID: program id ,句柄,唯一标识进程
+
+
